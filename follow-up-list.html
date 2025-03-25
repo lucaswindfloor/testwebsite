@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客户跟进 - 湘江科创基地智慧园区系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-primary-700 border-r">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <img class="h-10 w-auto" src="https://source.unsplash.com/S_pXw_kIxFM/32x32" alt="湘江科创基地">
+                        <span class="ml-2 text-white font-semibold text-lg">湘江科创基地</span>
+                    </div>
+                    <div class="mt-6 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-chart-bar mr-3 text-primary-300"></i>
+                                总览
+                            </a>
+                            <a href="customer-management-home.html" class="bg-primary-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-user mr-3 text-primary-300"></i>
+                                客户管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-handshake mr-3 text-primary-300"></i>
+                                渠道管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-file-alt mr-3 text-primary-300"></i>
+                                合同签约
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-building mr-3 text-primary-300"></i>
+                                企业入驻
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-home mr-3 text-primary-300"></i>
+                                房源管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-book mr-3 text-primary-300"></i>
+                                招商字典设置
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-cog mr-3 text-primary-300"></i>
+                                基础设置
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex border-t border-primary-800 p-4">
+                        <a href="#" class="flex-shrink-0 group block">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="h-9 w-9 rounded-full" src="https://source.unsplash.com/mEZ3PoFGs_k/128x128" alt="头像">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-white">张经理</p>
+                                    <p class="text-xs font-medium text-primary-200">招商主管</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Top navbar -->
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+                <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-between">
+                    <div class="flex-1 flex items-center">
+                        <nav class="flex" aria-label="Breadcrumb">
+                            <ol class="flex items-center space-x-4">
+                                <li>
+                                    <div>
+                                        <a href="customer-management-home.html" class="text-gray-500 hover:text-gray-700">
+                                            客户管理
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                                        <span class="ml-4 text-gray-700 font-medium">客户跟进</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-bell"></i>
+                        </button>
+                        <button class="ml-3 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-question-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <!-- 页面标题和按钮 -->
+                        <div class="md:flex md:items-center md:justify-between mb-6">
+                            <div class="flex-1 min-w-0">
+                                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                    客户跟进
+                                </h2>
+                            </div>
+                            <div class="mt-4 flex space-x-3 md:mt-0">
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    日程视图
+                                </button>
+                                <a href="follow-up-add.html" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none">
+                                    <i class="fas fa-plus mr-2"></i>
+                                    添加跟进
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 功能切换标签 -->
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                                <a href="#" class="border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    待跟进任务 (15)
+                                </a>
+                                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    今日已完成 (5)
+                                </a>
+                                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    全部跟进记录
+                                </a>
+                                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    客户授权 (3)
+                                </a>
+                            </nav>
+                        </div>
+
+                        <!-- 跟进任务统计卡片 -->
+                        <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 bg-red-100 rounded-md p-3">
+                                            <i class="fas fa-exclamation-circle text-red-600"></i>
+                                        </div>
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                                    即将过期待跟进
+                                                </dt>
+                                                <dd class="flex items-baseline">
+                                                    <div class="text-2xl font-semibold text-gray-900">
+                                                        5
+                                                    </div>
+                                                    <div class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+                                                        <span>紧急</span>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                                    <div class="text-sm">
+                                        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                            立即处理 <i class="fas fa-arrow-right ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                                            <i class="fas fa-clock text-yellow-600"></i>
+                                        </div>
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                                    今日待跟进
+                                                </dt>
+                                                <dd class="flex items-baseline">
+                                                    <div class="text-2xl font-semibold text-gray-900">
+                                                        8
+                                                    </div>
+                                                    <div class="ml-2 flex items-baseline text-sm font-semibold text-yellow-600">
+                                                        <span>待处理</span>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                                    <div class="text-sm">
+                                        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                            查看详情 <i class="fas fa-arrow-right ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                                            <i class="fas fa-calendar-week text-blue-600"></i>
+                                        </div>
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                                    本周待跟进
+                                                </dt>
+                                                <dd class="flex items-baseline">
+                                                    <div class="text-2xl font-semibold text-gray-900">
+                                                        15
+                                                    </div>
+                                                    <div class="ml-2 flex items-baseline text-sm font-semibold text-blue-600">
+                                                        <span>计划中</span>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                                    <div class="text-sm">
+                                        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                            查看详情 <i class="fas fa-arrow-right ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 搜索和筛选 -->
+                        <div class="mt-6 mb-4 grid gap-4 md:grid-cols-4">
+                            <div class="col-span-2">
+                                <label for="search" class="sr-only">搜索</label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-search text-gray-400"></i>
+                                    </div>
+                                    <input type="text" name="search" id="search" class="focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="搜索客户名称、联系人...">
+                                </div>
+                            </div>
+                            <div>
+                                <select id="date-filter" name="date-filter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                    <option value="today">今日</option>
+                                    <option value="tomorrow">明日</option>
+                                    <option value="this-week">本周</option>
+                                    <option value="next-week">下周</option>
+                                    <option value="all">全部时间</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select id="priority-filter" name="priority-filter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                    <option value="">所有优先级</option>
+                                    <option value="high">高</option>
+                                    <option value="medium">中</option>
+                                    <option value="low">低</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 客户跟进任务列表 -->
+                        <div class="mt-2 bg-white shadow overflow-hidden sm:rounded-md">
+                            <ul class="divide-y divide-gray-200">
+                                <!-- 跟进任务1 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="flex items-center px-4 py-4 sm:px-6">
+                                            <div class="min-w-0 flex-1 flex items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
+                                                        <span class="text-red-600 font-medium">紧急</span>
+                                                    </div>
+                                                </div>
+                                                <div class="min-w-0 flex-1 px-4">
+                                                    <div>
+                                                        <p class="text-sm font-medium text-primary-600 truncate">长沙智能科技有限公司</p>
+                                                        <p class="mt-1 flex text-sm text-gray-500">
+                                                            <span class="truncate">跟进人: 张经理</span>
+                                                            <span class="ml-3 flex-shrink-0 font-medium text-gray-700">
+                                                                预约拜访洽谈
+                                                            </span>
+                                                        </p>
+                                                        <p class="mt-1 flex text-xs text-gray-500">
+                                                            <span>联系人: 李明 (13812345678)</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-2">
+                                                <div class="text-sm text-gray-900 font-medium">
+                                                    <time datetime="2023-05-26">今日 14:30</time>
+                                                </div>
+                                                <div class="mt-2 flex">
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-check mr-1"></i> 完成
+                                                    </button>
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-pen mr-1"></i> 跟进
+                                                    </button>
+                                                    <button class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- 跟进任务2 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="flex items-center px-4 py-4 sm:px-6">
+                                            <div class="min-w-0 flex-1 flex items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
+                                                        <span class="text-yellow-600 font-medium">中等</span>
+                                                    </div>
+                                                </div>
+                                                <div class="min-w-0 flex-1 px-4">
+                                                    <div>
+                                                        <p class="text-sm font-medium text-primary-600 truncate">湖南创新材料研究院</p>
+                                                        <p class="mt-1 flex text-sm text-gray-500">
+                                                            <span class="truncate">跟进人: 赵经理</span>
+                                                            <span class="ml-3 flex-shrink-0 font-medium text-gray-700">
+                                                                电话沟通签约细节
+                                                            </span>
+                                                        </p>
+                                                        <p class="mt-1 flex text-xs text-gray-500">
+                                                            <span>联系人: 陈博士 (13987654321)</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-2">
+                                                <div class="text-sm text-gray-900 font-medium">
+                                                    <time datetime="2023-05-26">今日 15:00</time>
+                                                </div>
+                                                <div class="mt-2 flex">
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-check mr-1"></i> 完成
+                                                    </button>
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-pen mr-1"></i> 跟进
+                                                    </button>
+                                                    <button class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- 跟进任务3 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="flex items-center px-4 py-4 sm:px-6">
+                                            <div class="min-w-0 flex-1 flex items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                                                        <span class="text-green-600 font-medium">普通</span>
+                                                    </div>
+                                                </div>
+                                                <div class="min-w-0 flex-1 px-4">
+                                                    <div>
+                                                        <p class="text-sm font-medium text-primary-600 truncate">湖南数字科技有限公司</p>
+                                                        <p class="mt-1 flex text-sm text-gray-500">
+                                                            <span class="truncate">跟进人: 李经理</span>
+                                                            <span class="ml-3 flex-shrink-0 font-medium text-gray-700">
+                                                                发送房源资料
+                                                            </span>
+                                                        </p>
+                                                        <p class="mt-1 flex text-xs text-gray-500">
+                                                            <span>联系人: 王总 (13756789012)</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-2">
+                                                <div class="text-sm text-gray-900 font-medium">
+                                                    <time datetime="2023-05-26">明日 10:30</time>
+                                                </div>
+                                                <div class="mt-2 flex">
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-check mr-1"></i> 完成
+                                                    </button>
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-pen mr-1"></i> 跟进
+                                                    </button>
+                                                    <button class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- 跟进任务4 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="flex items-center px-4 py-4 sm:px-6">
+                                            <div class="min-w-0 flex-1 flex items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
+                                                        <span class="text-red-600 font-medium">紧急</span>
+                                                    </div>
+                                                </div>
+                                                <div class="min-w-0 flex-1 px-4">
+                                                    <div>
+                                                        <p class="text-sm font-medium text-primary-600 truncate">长沙生物医药科技有限公司</p>
+                                                        <p class="mt-1 flex text-sm text-gray-500">
+                                                            <span class="truncate">跟进人: 张经理</span>
+                                                            <span class="ml-3 flex-shrink-0 font-medium text-gray-700">
+                                                                商谈合同细节
+                                                            </span>
+                                                        </p>
+                                                        <p class="mt-1 flex text-xs text-gray-500">
+                                                            <span>联系人: 林教授 (13598765432)</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-2">
+                                                <div class="text-sm text-gray-900 font-medium">
+                                                    <time datetime="2023-05-26">今日 16:00</time>
+                                                </div>
+                                                <div class="mt-2 flex">
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-check mr-1"></i> 完成
+                                                    </button>
+                                                    <button class="text-primary-600 hover:text-primary-900 text-sm font-medium mr-4">
+                                                        <i class="fas fa-pen mr-1"></i> 跟进
+                                                    </button>
+                                                    <button class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 最近跟进记录 -->
+                        <h3 class="text-lg font-medium text-gray-900 mt-8 mb-4">最近跟进记录</h3>
+                        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                            <ul class="divide-y divide-gray-200">
+                                <!-- 跟进记录1 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <img class="h-10 w-10 rounded-full" src="https://source.unsplash.com/mEZ3PoFGs_k/128x128" alt="头像">
+                                                </div>
+                                                <div class="ml-4 flex-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium text-primary-600">
+                                                            张经理 跟进了 长沙智能科技有限公司
+                                                        </p>
+                                                        <p class="text-sm text-gray-500">
+                                                            今日 10:28
+                                                        </p>
+                                                    </div>
+                                                    <div class="mt-2 text-sm text-gray-700">
+                                                        <p>与李明电话沟通，了解其需求细节。对方有意向租赁B区3栋5层，约300平方米办公区域，预计6月初入驻。已发送详细房源资料，安排明日下午2:30现场看房。</p>
+                                                    </div>
+                                                    <div class="mt-2 flex">
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">
+                                                            电话沟通
+                                                        </span>
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                            下次跟进: 明日 14:30
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- 跟进记录2 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <img class="h-10 w-10 rounded-full" src="https://source.unsplash.com/7_TTPznVIQI/128x128" alt="头像">
+                                                </div>
+                                                <div class="ml-4 flex-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium text-primary-600">
+                                                            赵经理 跟进了 湖南创新材料研究院
+                                                        </p>
+                                                        <p class="text-sm text-gray-500">
+                                                            昨日 15:45
+                                                        </p>
+                                                    </div>
+                                                    <div class="mt-2 text-sm text-gray-700">
+                                                        <p>拜访陈博士并带其参观了A区科研楼，客户对环境和配套设施表示满意。初步达成租赁意向，需要进一步商讨租金优惠政策和装修细节。计划明天电话沟通签约细节。</p>
+                                                    </div>
+                                                    <div class="mt-2 flex">
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">
+                                                            现场拜访
+                                                        </span>
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                            下次跟进: 今日 15:00
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- 跟进记录3 -->
+                                <li>
+                                    <div class="block hover:bg-gray-50">
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <img class="h-10 w-10 rounded-full" src="https://source.unsplash.com/J1WxX1n_iS8/128x128" alt="头像">
+                                                </div>
+                                                <div class="ml-4 flex-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium text-primary-600">
+                                                            李经理 跟进了 湖南数字科技有限公司
+                                                        </p>
+                                                        <p class="text-sm text-gray-500">
+                                                            2天前
+                                                        </p>
+                                                    </div>
+                                                    <div class="mt-2 text-sm text-gray-700">
+                                                        <p>与王总视频会议，介绍了园区的优惠政策和大数据企业的成功案例。客户表示有兴趣考察C区1栋的办公空间，需要进一步了解房源详情。明天发送C区1栋的详细资料。</p>
+                                                    </div>
+                                                    <div class="mt-2 flex">
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">
+                                                            视频会议
+                                                        </span>
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                            下次跟进: 明日 10:30
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 分页 -->
+                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4 rounded-b-md">
+                            <div class="flex-1 flex justify-between sm:hidden">
+                                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    上一页
+                                </a>
+                                <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    下一页
+                                </a>
+                            </div>
+                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        显示 <span class="font-medium">1</span> 到 <span class="font-medium">10</span> 条，共 <span class="font-medium">125</span> 条结果
+                                    </p>
+                                </div>
+                                <div>
+                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">上一页</span>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </a>
+                                        <a href="#" aria-current="page" class="z-10 bg-primary-50 border-primary-500 text-primary-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            1
+                                        </a>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            2
+                                        </a>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            3
+                                        </a>
+                                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                            ...
+                                        </span>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            13
+                                        </a>
+                                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">下一页</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html> 

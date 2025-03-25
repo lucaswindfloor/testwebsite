@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增意向 - 湘江科创基地智慧园区系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-primary-700 border-r">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <img class="h-10 w-auto" src="https://source.unsplash.com/S_pXw_kIxFM/32x32" alt="湘江科创基地">
+                        <span class="ml-2 text-white font-semibold text-lg">湘江科创基地</span>
+                    </div>
+                    <div class="mt-6 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-chart-bar mr-3 text-primary-300"></i>
+                                总览
+                            </a>
+                            <a href="customer-management-home.html" class="bg-primary-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-user mr-3 text-primary-300"></i>
+                                客户管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-handshake mr-3 text-primary-300"></i>
+                                渠道管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-file-alt mr-3 text-primary-300"></i>
+                                合同签约
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-building mr-3 text-primary-300"></i>
+                                企业入驻
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-home mr-3 text-primary-300"></i>
+                                房源管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-book mr-3 text-primary-300"></i>
+                                招商字典设置
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-cog mr-3 text-primary-300"></i>
+                                基础设置
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex border-t border-primary-800 p-4">
+                        <a href="#" class="flex-shrink-0 group block">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="h-9 w-9 rounded-full" src="https://source.unsplash.com/mEZ3PoFGs_k/128x128" alt="头像">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-white">张经理</p>
+                                    <p class="text-xs font-medium text-primary-200">招商主管</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Top navbar -->
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+                <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-between">
+                    <div class="flex-1 flex items-center">
+                        <nav class="flex" aria-label="Breadcrumb">
+                            <ol class="flex items-center space-x-4">
+                                <li>
+                                    <div>
+                                        <a href="customer-management-home.html" class="text-gray-500 hover:text-gray-700">
+                                            客户管理
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                                        <a href="intention-list.html" class="ml-4 text-gray-500 hover:text-gray-700">
+                                            意向登记
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                                        <span class="ml-4 text-gray-700 font-medium">新增意向</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-bell"></i>
+                        </button>
+                        <button class="ml-3 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-question-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <!-- 页面标题 -->
+                        <div class="mb-6">
+                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                新增意向
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                填写客户意向信息，完成意向登记
+                            </p>
+                        </div>
+                        
+                        <!-- 表单区域 -->
+                        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    意向信息
+                                </h3>
+                                <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                    带 <span class="text-red-500">*</span> 为必填项
+                                </p>
+                            </div>
+                            
+                            <!-- 步骤导航 -->
+                            <div class="px-4 sm:px-6 py-4 border-b border-gray-200">
+                                <nav class="flex justify-between">
+                                    <a href="#step1" class="flex flex-col items-center group">
+                                        <div class="bg-primary-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                                            <span>1</span>
+                                        </div>
+                                        <span class="mt-2 text-sm font-medium text-primary-600">选择客户</span>
+                                    </a>
+                                    <div class="w-1/4 h-0.5 bg-primary-500 self-center"></div>
+                                    <a href="#step2" class="flex flex-col items-center">
+                                        <div class="bg-white border-2 border-gray-300 text-gray-500 w-8 h-8 rounded-full flex items-center justify-center">
+                                            <span>2</span>
+                                        </div>
+                                        <span class="mt-2 text-sm font-medium text-gray-500">选择房源</span>
+                                    </a>
+                                    <div class="w-1/4 h-0.5 bg-gray-300 self-center"></div>
+                                    <a href="#step3" class="flex flex-col items-center">
+                                        <div class="bg-white border-2 border-gray-300 text-gray-500 w-8 h-8 rounded-full flex items-center justify-center">
+                                            <span>3</span>
+                                        </div>
+                                        <span class="mt-2 text-sm font-medium text-gray-500">意向详情</span>
+                                    </a>
+                                </nav>
+                            </div>
+                            
+                            <div class="px-4 py-5 sm:p-6">
+                                <form action="#" method="POST">
+                                    <!-- 步骤1: 选择客户 -->
+                                    <div id="step1" class="space-y-6">
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h4 class="text-lg font-medium text-gray-900">选择客户</h4>
+                                            <button type="button" onclick="showNewCustomerModal()" class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-primary-700 bg-primary-100 hover:bg-primary-200 focus:outline-none">
+                                                <i class="fas fa-plus mr-1"></i> 新增客户
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="bg-gray-50 p-4 rounded-lg">
+                                            <div class="mb-4">
+                                                <div class="relative rounded-md shadow-sm">
+                                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                        <i class="fas fa-search text-gray-400"></i>
+                                                    </div>
+                                                    <input type="text" name="search" id="search-customer" class="focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="搜索客户名称、联系人...">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="overflow-hidden border border-gray-200 sm:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <thead class="bg-gray-50">
+                                                        <tr>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                选择
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                客户名称
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                联系人
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                联系方式
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                行业类型
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="bg-white divide-y divide-gray-200">
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="radio" name="selected_customer" value="1" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">长沙智能科技有限公司</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">李明</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">13812345678</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                人工智能/科技服务
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="radio" name="selected_customer" value="2" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湖南创新材料研究院</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">陈博士</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">13987654321</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                新材料/研发
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 选中的客户信息 -->
+                                        <div class="border border-green-200 bg-green-50 p-4 rounded-lg mt-4">
+                                            <h5 class="font-medium text-green-800 mb-3">已选择客户</h5>
+                                            <div id="selected-customers" class="space-y-2">
+                                                <!-- 选择的客户会通过JavaScript添加到这里 -->
+                                            </div>
+                                            <div id="area-warning" class="text-red-500 text-sm font-medium mt-2 hidden">
+                                                注意：只能选择同一园区的客户，请调整您的选择。
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex justify-end pt-5">
+                                            <button type="button" onclick="location.href='intention-list.html'" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                                                取消
+                                            </button>
+                                            <button type="button" onclick="document.getElementById('step2').scrollIntoView({behavior: 'smooth'})" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none">
+                                                下一步
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 步骤2: 选择房源 -->
+                                    <div id="step2" class="border-t border-gray-200 pt-8 mt-8 space-y-6 hidden">
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h4 class="text-lg font-medium text-gray-900">选择房源</h4>
+                                            <div class="text-sm text-gray-500">可选择多个房源（必须属于同一园区）</div>
+                                        </div>
+                                        
+                                        <!-- 园区选择 -->
+                                        <div class="bg-yellow-50 p-4 rounded-md mb-4 border border-yellow-200">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fas fa-info-circle text-yellow-500 mt-0.5"></i>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h3 class="text-sm font-medium text-yellow-800">请注意</h3>
+                                                    <div class="mt-2 text-sm text-yellow-700">
+                                                        <p>一个意向只能选择同一园区的房源。请先选择园区，然后在该园区内选择合适的房源。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 房源筛选 -->
+                                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                            <div>
+                                                <label for="area" class="block text-sm font-medium text-gray-700">园区片区 <span class="text-red-500">*</span></label>
+                                                <select id="area" name="area" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md" required>
+                                                    <option value="">请选择园区片区</option>
+                                                    <option>湘江基地A区</option>
+                                                    <option>湘江基地B区</option>
+                                                    <option>湘江基地C区</option>
+                                                    <option>湘江基地D区</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="building" class="block text-sm font-medium text-gray-700">楼栋</label>
+                                                <select id="building" name="building" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">全部楼栋</option>
+                                                    <option>1栋</option>
+                                                    <option>2栋</option>
+                                                    <option>3栋</option>
+                                                    <option>科研楼</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="floor" class="block text-sm font-medium text-gray-700">楼层</label>
+                                                <select id="floor" name="floor" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">全部楼层</option>
+                                                    <option>1层</option>
+                                                    <option>2层</option>
+                                                    <option>3层</option>
+                                                    <option>4层</option>
+                                                    <option>5层</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="property-type" class="block text-sm font-medium text-gray-700">房源类型</label>
+                                                <select id="property-type" name="property_type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">全部类型</option>
+                                                    <option>办公室</option>
+                                                    <option>研发室</option>
+                                                    <option>工位</option>
+                                                    <option>会议室</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                            <div>
+                                                <label for="area-size" class="block text-sm font-medium text-gray-700">面积要求</label>
+                                                <select id="area-size" name="area-size" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">不限</option>
+                                                    <option>100㎡以下</option>
+                                                    <option>100-200㎡</option>
+                                                    <option>200-300㎡</option>
+                                                    <option>300-500㎡</option>
+                                                    <option>500㎡以上</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="price-range" class="block text-sm font-medium text-gray-700">价格区间</label>
+                                                <select id="price-range" name="price_range" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">不限</option>
+                                                    <option>30元/㎡/月以下</option>
+                                                    <option>30-40元/㎡/月</option>
+                                                    <option>40-50元/㎡/月</option>
+                                                    <option>50元/㎡/月以上</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 房源列表Tab切换 -->
+                                        <div class="mt-4">
+                                            <div class="border-b border-gray-200">
+                                                <nav class="-mb-px flex space-x-8">
+                                                    <button type="button" class="property-tab border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="rooms">
+                                                        房间
+                                                    </button>
+                                                    <button type="button" class="property-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="workstations">
+                                                        工位
+                                                    </button>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 房间列表 -->
+                                        <div id="rooms-tab" class="property-content">
+                                            <div class="overflow-hidden border border-gray-200 sm:rounded-lg mt-4">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <thead class="bg-gray-50">
+                                                        <tr>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                选择
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                房源信息
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                面积(㎡)
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                用途
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                租金(元/㎡/月)
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                状态
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="bg-white divide-y divide-gray-200">
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="checkbox" name="selected_property[]" value="1" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded property-checkbox" data-area="湘江基地B区">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湘江基地B区3栋</div>
+                                                                <div class="text-sm text-gray-500">5层501室</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">300</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">办公</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                45
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    空置
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="checkbox" name="selected_property[]" value="2" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded property-checkbox" data-area="湘江基地A区">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湘江基地A区科研楼</div>
+                                                                <div class="text-sm text-gray-500">3层301室</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">500</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">研发</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                50
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    空置
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="checkbox" name="selected_property[]" value="3" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded property-checkbox" data-area="湘江基地C区">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湘江基地C区1栋</div>
+                                                                <div class="text-sm text-gray-500">2层205室</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">200</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">办公</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                40
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    空置
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 工位列表 -->
+                                        <div id="workstations-tab" class="property-content hidden">
+                                            <div class="overflow-hidden border border-gray-200 sm:rounded-lg mt-4">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <thead class="bg-gray-50">
+                                                        <tr>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                选择
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                工位信息
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                工位编号
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                类型
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                服务费(元/月)
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                状态
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="bg-white divide-y divide-gray-200">
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="checkbox" name="selected_workstation[]" value="1" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded property-checkbox" data-area="湘江基地A区">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湘江基地A区创业空间</div>
+                                                                <div class="text-sm text-gray-500">1层</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">A-101</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">开放工位</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                800
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    空置
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="checkbox" name="selected_workstation[]" value="2" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded property-checkbox" data-area="湘江基地A区">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湘江基地A区创业空间</div>
+                                                                <div class="text-sm text-gray-500">1层</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">A-102</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">开放工位</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                800
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    空置
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="hover:bg-gray-50">
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <input type="checkbox" name="selected_workstation[]" value="3" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded property-checkbox" data-area="湘江基地B区">
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm font-medium text-gray-900">湘江基地B区1栋</div>
+                                                                <div class="text-sm text-gray-500">2层创客空间</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">B-201</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-500">独立工位</div>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                1200
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    空置
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 已选择房源 -->
+                                        <div class="border border-green-200 bg-green-50 p-4 rounded-lg mt-4">
+                                            <h5 class="font-medium text-green-800 mb-3">已选择房源</h5>
+                                            <div id="selected-properties" class="space-y-2">
+                                                <!-- 选择的房源会通过JavaScript添加到这里 -->
+                                            </div>
+                                            <div id="area-warning" class="text-red-500 text-sm font-medium mt-2 hidden">
+                                                注意：只能选择同一园区的房源，请调整您的选择。
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex justify-end pt-5">
+                                            <button type="button" onclick="document.getElementById('step1').scrollIntoView({behavior: 'smooth'})" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                                                上一步
+                                            </button>
+                                            <button type="button" onclick="document.getElementById('step3').scrollIntoView({behavior: 'smooth'})" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none">
+                                                下一步
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 步骤3: 意向详情 -->
+                                    <div id="step3" class="border-t border-gray-200 pt-8 mt-8 space-y-6 hidden">
+                                        <h4 class="text-lg font-medium text-gray-900 mb-4">意向详情</h4>
+                                        
+                                        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                            <div class="sm:col-span-3">
+                                                <label for="intention-source" class="block text-sm font-medium text-gray-700">意向来源 <span class="text-red-500">*</span></label>
+                                                <select id="intention-source" name="intention_source" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md" onchange="toggleChannelSelection()">
+                                                    <option value="">请选择</option>
+                                                    <option>自主开发</option>
+                                                    <option>渠道推荐</option>
+                                                    <option>网络推广</option>
+                                                    <option>转介绍</option>
+                                                    <option>老客户</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <!-- 渠道选择 (只在渠道推荐来源时显示) -->
+                                            <div id="channel-selection" class="sm:col-span-3 hidden">
+                                                <label for="channel" class="block text-sm font-medium text-gray-700">选择渠道 <span class="text-red-500">*</span></label>
+                                                <select id="channel" name="channel" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md" onchange="toggleBrokerSelection()">
+                                                    <option value="">请选择渠道</option>
+                                                    <option>安居房产中介</option>
+                                                    <option>长沙商会</option>
+                                                    <option>互联网产业协会</option>
+                                                    <option>其他渠道</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <!-- 经纪人选择 (只在选择渠道后显示) -->
+                                            <div id="broker-selection" class="sm:col-span-3 hidden">
+                                                <label for="broker" class="block text-sm font-medium text-gray-700">选择经纪人</label>
+                                                <select id="broker" name="broker" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">请选择经纪人</option>
+                                                    <!-- 动态加载经纪人选项 -->
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="sm:col-span-3">
+                                                <label for="intention-type" class="block text-sm font-medium text-gray-700">意向类型 <span class="text-red-500">*</span></label>
+                                                <select id="intention-type" name="intention_type" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">请选择</option>
+                                                    <option>租赁办公</option>
+                                                    <option>租赁厂房</option>
+                                                    <option>工位租赁</option>
+                                                    <option>地址注册</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="sm:col-span-3">
+                                                <label for="expected-entry-time" class="block text-sm font-medium text-gray-700">预计入驻时间</label>
+                                                <input type="date" name="expected_entry_time" id="expected-entry-time" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            </div>
+                                            
+                                            <div class="sm:col-span-3">
+                                                <label for="intention-level" class="block text-sm font-medium text-gray-700">意向级别 <span class="text-red-500">*</span></label>
+                                                <select id="intention-level" name="intention_level" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="">请选择</option>
+                                                    <option value="A">A级-强烈意向</option>
+                                                    <option value="B">B级-有意向</option>
+                                                    <option value="C">C级-初步了解</option>
+                                                    <option value="D">D级-暂无意向</option>
+                                                </select>
+                                                <p class="mt-1 text-sm text-gray-500" id="intention-level-description"></p>
+                                            </div>
+                                            
+                                            <div class="sm:col-span-3">
+                                                <label for="follow-user" class="block text-sm font-medium text-gray-700">跟进人 <span class="text-red-500">*</span></label>
+                                                <div class="mt-1 flex rounded-md shadow-sm">
+                                                    <input type="text" name="follow_user" id="follow-user" value="张经理" readonly class="flex-1 focus:ring-primary-500 focus:border-primary-500 block w-full min-w-0 rounded-none rounded-l-md sm:text-sm border-gray-300 bg-gray-100">
+                                                    <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                                                        默认为登记人
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="sm:col-span-3">
+                                                <label for="approval-flow" class="block text-sm font-medium text-gray-700">审核流程</label>
+                                                <select id="approval-flow" name="approval_flow" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                    <option value="standard">标准流程（主管审核）</option>
+                                                    <option value="quick">快速流程（无需审核）</option>
+                                                    <option value="strict">严格流程（主管+部门经理审核）</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <!-- 跟进计划 -->
+                                            <div class="sm:col-span-6">
+                                                <fieldset>
+                                                    <legend class="text-sm font-medium text-gray-700">跟进计划</legend>
+                                                    <div class="mt-4 border-t border-gray-200 pt-4">
+                                                        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                                            <div class="sm:col-span-3">
+                                                                <label for="next-follow-time" class="block text-sm font-medium text-gray-700">下次跟进时间</label>
+                                                                <input type="datetime-local" name="next_follow_time" id="next-follow-time" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                            </div>
+                                                            <div class="sm:col-span-3">
+                                                                <label for="follow-type" class="block text-sm font-medium text-gray-700">跟进方式</label>
+                                                                <select id="follow-type" name="follow_type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                                                    <option value="">请选择</option>
+                                                                    <option>电话沟通</option>
+                                                                    <option>上门拜访</option>
+                                                                    <option>邮件沟通</option>
+                                                                    <option>微信沟通</option>
+                                                                    <option>视频会议</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="sm:col-span-6">
+                                                                <label for="follow-plan" class="block text-sm font-medium text-gray-700">跟进计划内容</label>
+                                                                <textarea id="follow-plan" name="follow_plan" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="请输入下次跟进计划内容..."></textarea>
+                                                            </div>
+                                                            <div class="sm:col-span-6">
+                                                                <div class="flex items-start">
+                                                                    <div class="flex items-center h-5">
+                                                                        <input id="follow-reminder" name="follow_reminder" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                                    </div>
+                                                                    <div class="ml-3 text-sm">
+                                                                        <label for="follow-reminder" class="font-medium text-gray-700">设置跟进提醒</label>
+                                                                        <p class="text-gray-500">到期前会通过系统消息、邮件等方式提醒</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            
+                                            <div class="sm:col-span-6">
+                                                <label for="remarks" class="block text-sm font-medium text-gray-700">备注说明</label>
+                                                <textarea id="remarks" name="remarks" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="请输入意向的详细情况、客户特殊需求等..."></textarea>
+                                            </div>
+                                            
+                                            <div class="sm:col-span-6">
+                                                <label for="attachments" class="block text-sm font-medium text-gray-700">上传附件</label>
+                                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                                    <div class="space-y-1 text-center">
+                                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                        <div class="flex text-sm text-gray-600">
+                                                            <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                                                <span>上传文件</span>
+                                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                            </label>
+                                                            <p class="pl-1">或拖拽文件到此处</p>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">
+                                                            PNG, JPG, PDF 文件不超过 10MB
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex justify-end pt-5">
+                                            <button type="button" onclick="document.getElementById('step2').scrollIntoView({behavior: 'smooth'})" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                                                上一步
+                                            </button>
+                                            <button type="button" onclick="saveAsDraft()" class="ml-3 inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                                                保存为草稿
+                                            </button>
+                                            <button type="button" onclick="submitAndInitiateContract()" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none">
+                                                提交并发起合同
+                                            </button>
+                                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none">
+                                                提交意向
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 新增客户模态框 -->
+    <div id="new-customer-modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6">
+                <div>
+                    <div class="mt-3 text-center sm:mt-0 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            新增客户
+                        </h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">
+                                请填写客户基本信息，带 <span class="text-red-500">*</span> 为必填项
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <form id="new-customer-form" class="space-y-4">
+                            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                <div class="sm:col-span-3">
+                                    <label for="company-name" class="block text-sm font-medium text-gray-700">企业名称 <span class="text-red-500">*</span></label>
+                                    <input type="text" name="company_name" id="company-name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="company-type" class="block text-sm font-medium text-gray-700">企业类型 <span class="text-red-500">*</span></label>
+                                    <select id="company-type" name="company_type" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                        <option value="">请选择</option>
+                                        <option>有限责任公司</option>
+                                        <option>股份有限公司</option>
+                                        <option>个体工商户</option>
+                                        <option>合伙企业</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="industry-type" class="block text-sm font-medium text-gray-700">行业类型 <span class="text-red-500">*</span></label>
+                                    <select id="industry-type" name="industry_type" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                        <option value="">请选择</option>
+                                        <option>人工智能/科技服务</option>
+                                        <option>新材料/研发</option>
+                                        <option>大数据/云计算</option>
+                                        <option>新能源/环保</option>
+                                        <option>生物医药</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="company-size" class="block text-sm font-medium text-gray-700">企业规模</label>
+                                    <select id="company-size" name="company_size" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md">
+                                        <option value="">请选择</option>
+                                        <option>微型企业(10人以下)</option>
+                                        <option>小型企业(10-99人)</option>
+                                        <option>中型企业(100-499人)</option>
+                                        <option>大型企业(500人以上)</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="credit-code" class="block text-sm font-medium text-gray-700">统一社会信用代码</label>
+                                    <input type="text" name="credit_code" id="credit-code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="founded-date" class="block text-sm font-medium text-gray-700">成立日期</label>
+                                    <input type="date" name="founded_date" id="founded-date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="legal-person" class="block text-sm font-medium text-gray-700">法人姓名 <span class="text-red-500">*</span></label>
+                                    <input type="text" name="legal_person" id="legal-person" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="contact-name" class="block text-sm font-medium text-gray-700">联系人姓名 <span class="text-red-500">*</span></label>
+                                    <input type="text" name="contact_name" id="contact-name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="contact-phone" class="block text-sm font-medium text-gray-700">联系电话 <span class="text-red-500">*</span></label>
+                                    <input type="tel" name="contact_phone" id="contact-phone" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="contact-email" class="block text-sm font-medium text-gray-700">联系邮箱</label>
+                                    <input type="email" name="contact_email" id="contact-email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-6">
+                                    <label for="company-address" class="block text-sm font-medium text-gray-700">企业地址</label>
+                                    <input type="text" name="company_address" id="company-address" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                </div>
+                                <div class="sm:col-span-6">
+                                    <label for="company-description" class="block text-sm font-medium text-gray-700">企业简介</label>
+                                    <textarea id="company-description" name="company_description" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="请简要描述企业情况..."></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none sm:col-start-2 sm:text-sm" onclick="confirmAddCustomer()">
+                        添加客户
+                    </button>
+                    <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:col-start-1 sm:text-sm" onclick="hideNewCustomerModal()">
+                        取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 简单的页面交互逻辑，实际项目中应该使用更完善的前端框架
+        document.addEventListener('DOMContentLoaded', function() {
+            // 显示步骤1，隐藏其他步骤
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            
+            // 添加事件监听器，点击链接切换步骤
+            document.querySelectorAll('a[href^="#step"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById('step1').classList.add('hidden');
+                    document.getElementById('step2').classList.add('hidden');
+                    document.getElementById('step3').classList.add('hidden');
+                    document.getElementById(targetId).classList.remove('hidden');
+                });
+            });
+        });
+        
+        // 添加园区选择验证逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化Tab切换
+            const propertyTabs = document.querySelectorAll('.property-tab');
+            const propertyContents = document.querySelectorAll('.property-content');
+            
+            propertyTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有tab的激活状态
+                    propertyTabs.forEach(t => {
+                        t.classList.remove('border-primary-500', 'text-primary-600');
+                        t.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    
+                    // 添加当前tab的激活状态
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    this.classList.add('border-primary-500', 'text-primary-600');
+                    
+                    // 隐藏所有内容
+                    propertyContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // 显示当前tab对应的内容
+                    const tabName = this.getAttribute('data-tab');
+                    document.getElementById(tabName + '-tab').classList.remove('hidden');
+                });
+            });
+            
+            // 房源选择逻辑
+            const propertyCheckboxes = document.querySelectorAll('.property-checkbox');
+            const selectedProperties = document.getElementById('selected-properties');
+            const areaWarning = document.getElementById('area-warning');
+            
+            let selectedArea = null;
+            
+            propertyCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const area = this.getAttribute('data-area');
+                    
+                    if (this.checked) {
+                        // 如果已经选择了其他园区的房源，显示警告并取消选择
+                        if (selectedArea && selectedArea !== area) {
+                            areaWarning.classList.remove('hidden');
+                            this.checked = false;
+                            return;
+                        }
+                        
+                        selectedArea = area;
+                        areaWarning.classList.add('hidden');
+                        
+                        // 获取房源信息
+                        const row = this.closest('tr');
+                        const propertyInfoCell = row.cells[1];
+                        const propertyAreaCell = row.cells[2];
+                        const propertyUsageCell = row.cells[3];
+                        const propertyPriceCell = row.cells[4];
+                        
+                        const propertyInfo = propertyInfoCell.querySelector('.text-sm.font-medium').textContent;
+                        const propertyDetail = propertyInfoCell.querySelector('.text-sm.text-gray-500').textContent;
+                        
+                        let propertyArea = '';
+                        let propertyUsage = '';
+                        let propertyPrice = '';
+                        
+                        // 检查是房间还是工位
+                        if (propertyAreaCell) {
+                            propertyArea = propertyAreaCell.querySelector('.text-sm.text-gray-900').textContent + '㎡';
+                            propertyUsage = propertyUsageCell.querySelector('.text-sm.text-gray-500').textContent;
+                            propertyPrice = propertyPriceCell.querySelector('.text-sm.text-gray-500').textContent + '元/㎡/月';
+                        } else {
+                            // 工位的情况
+                            const workstationIdCell = row.cells[2];
+                            const workstationTypeCell = row.cells[3];
+                            const workstationPriceCell = row.cells[4];
+                            
+                            propertyArea = workstationIdCell.querySelector('.text-sm.text-gray-900').textContent;
+                            propertyUsage = workstationTypeCell.querySelector('.text-sm.text-gray-500').textContent;
+                            propertyPrice = workstationPriceCell.querySelector('.text-sm.text-gray-500').textContent + '元/月';
+                        }
+                        
+                        // 创建选中房源的UI
+                        const propertyElement = document.createElement('div');
+                        propertyElement.className = 'flex justify-between bg-white p-3 rounded border border-green-100';
+                        propertyElement.dataset.id = this.value;
+                        
+                        propertyElement.innerHTML = `
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">${propertyInfo} ${propertyDetail}</p>
+                                <p class="text-sm text-gray-500">${propertyArea} | ${propertyUsage} | ${propertyPrice}</p>
+                            </div>
+                            <button type="button" class="text-red-500 hover:text-red-700" onclick="removeProperty('${this.value}')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        `;
+                        
+                        selectedProperties.appendChild(propertyElement);
+                    } else {
+                        // 移除已选择的房源
+                        const propertyElement = selectedProperties.querySelector(`[data-id="${this.value}"]`);
+                        if (propertyElement) {
+                            selectedProperties.removeChild(propertyElement);
+                        }
+                        
+                        // 如果没有选中的房源了，重置selectedArea
+                        if (selectedProperties.children.length === 0) {
+                            selectedArea = null;
+                        }
+                    }
+                });
+            });
+        });
+        
+        // 移除已选择的房源
+        function removeProperty(id) {
+            // 取消对应复选框的选中状态
+            const checkbox = document.querySelector(`.property-checkbox[value="${id}"]`);
+            if (checkbox) {
+                checkbox.checked = false;
+                
+                // 触发change事件
+                const event = new Event('change');
+                checkbox.dispatchEvent(event);
+            }
+        }
+        
+        // 意向级别说明
+        document.addEventListener('DOMContentLoaded', function() {
+            // 意向级别描述
+            const intentionLevelDescriptions = {
+                'A': 'A级：客户明确表示有较强意向，已确定面积、时间等关键需求',
+                'B': 'B级：客户明确有意向，但尚未确定具体需求或有其他选择',
+                'C': 'C级：客户有初步了解意愿，需进一步沟通和跟进',
+                'D': 'D级：客户暂无明确意向，处于信息收集阶段'
+            };
+            
+            // 监听意向级别变化，显示对应描述
+            const intentionLevel = document.getElementById('intention-level');
+            const intentionLevelDescription = document.getElementById('intention-level-description');
+            
+            intentionLevel.addEventListener('change', function() {
+                const level = this.value;
+                intentionLevelDescription.textContent = intentionLevelDescriptions[level] || '';
+            });
+        });
+        
+        // 渠道来源相关逻辑
+        function toggleChannelSelection() {
+            const intentionSource = document.getElementById('intention-source');
+            const channelSelection = document.getElementById('channel-selection');
+            const brokerSelection = document.getElementById('broker-selection');
+            
+            if (intentionSource.value === '渠道推荐') {
+                channelSelection.classList.remove('hidden');
+            } else {
+                channelSelection.classList.add('hidden');
+                brokerSelection.classList.add('hidden');
+            }
+        }
+        
+        function toggleBrokerSelection() {
+            const channel = document.getElementById('channel');
+            const brokerSelection = document.getElementById('broker-selection');
+            const broker = document.getElementById('broker');
+            
+            if (channel.value) {
+                brokerSelection.classList.remove('hidden');
+                // 根据选择的渠道加载对应的经纪人
+                loadBrokersByChannel(channel.value);
+            } else {
+                brokerSelection.classList.add('hidden');
+            }
+        }
+        
+        function loadBrokersByChannel(channelName) {
+            const broker = document.getElementById('broker');
+            // 清空现有选项
+            broker.innerHTML = '<option value="">请选择经纪人</option>';
+            
+            // 模拟从服务器获取经纪人数据
+            let brokers = [];
+            if (channelName === '安居房产中介') {
+                brokers = [
+                    { id: 1, name: '王经纪' },
+                    { id: 2, name: '李经纪' },
+                    { id: 3, name: '张经纪' }
+                ];
+            } else if (channelName === '长沙商会') {
+                brokers = [
+                    { id: 4, name: '陈秘书' },
+                    { id: 5, name: '刘会长' }
+                ];
+            } else if (channelName === '互联网产业协会') {
+                brokers = [
+                    { id: 6, name: '赵主任' },
+                    { id: 7, name: '钱秘书' }
+                ];
+            }
+            
+            // 添加经纪人选项
+            brokers.forEach(broker => {
+                const option = document.createElement('option');
+                option.value = broker.id;
+                option.textContent = broker.name;
+                document.getElementById('broker').appendChild(option);
+            });
+        }
+        
+        // 新增客户模态框
+        function showNewCustomerModal() {
+            document.getElementById('new-customer-modal').classList.remove('hidden');
+        }
+        
+        function hideNewCustomerModal() {
+            document.getElementById('new-customer-modal').classList.add('hidden');
+        }
+        
+        function confirmAddCustomer() {
+            // 表单验证
+            const form = document.getElementById('new-customer-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // 模拟添加客户
+            const companyName = document.getElementById('company-name').value;
+            const contactName = document.getElementById('contact-name').value;
+            const industryType = document.getElementById('industry-type').value;
+            
+            // 将新客户添加到已选择客户区域
+            const selectedCustomerDiv = document.querySelector('.border.border-green-200.bg-green-50');
+            selectedCustomerDiv.innerHTML = `
+                <h5 class="font-medium text-green-800 mb-3">已选择客户</h5>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-700"><span class="font-medium">客户名称:</span> ${companyName}</p>
+                        <p class="text-sm text-gray-700 mt-1"><span class="font-medium">联系人:</span> ${contactName}</p>
+                        <p class="text-sm text-gray-700 mt-1"><span class="font-medium">联系方式:</span> ${document.getElementById('contact-phone').value}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-700"><span class="font-medium">行业类型:</span> ${industryType}</p>
+                        <p class="text-sm text-gray-700 mt-1"><span class="font-medium">企业规模:</span> ${document.getElementById('company-size').value || '未设置'}</p>
+                        <p class="text-sm text-gray-700 mt-1"><span class="font-medium">法人代表:</span> ${document.getElementById('legal-person').value}</p>
+                    </div>
+                </div>
+            `;
+            
+            alert('客户添加成功!');
+            hideNewCustomerModal();
+        }
+        
+        // 保存为草稿功能
+        function saveAsDraft() {
+            // 这里添加保存草稿的逻辑
+            alert('意向信息已保存为草稿!');
+        }
+        
+        // 提交并发起合同功能
+        function submitAndInitiateContract() {
+            // 表单验证
+            const form = document.querySelector('form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            if (confirm('确认提交意向并直接发起合同签约流程?')) {
+                // 这里添加提交意向并发起合同的逻辑
+                alert('意向信息已提交，即将跳转到合同签约页面...');
+                // 模拟跳转到合同签约页面
+                setTimeout(() => {
+                    window.location.href = 'contract-signing.html';
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html> 

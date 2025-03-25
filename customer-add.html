@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增客户 - 湘江科创基地智慧园区系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Top navbar -->
+        <nav class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <div class="flex-shrink-0 flex items-center">
+                            <a href="customer-list-new.html" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-arrow-left mr-2"></i>
+                                返回客户列表
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page content -->
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                    <div class="px-4 py-5 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">新增客户</h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">请填写客户基本信息</p>
+                    </div>
+                    <div class="border-t border-gray-200">
+                        <form action="#" method="POST">
+                            <!-- 基本信息 -->
+                            <div class="px-4 py-5 bg-white sm:p-6">
+                                <div class="grid grid-cols-6 gap-6">
+                                    <div class="col-span-6 sm:col-span-4">
+                                        <label for="company_name" class="block text-sm font-medium text-gray-700">企业名称</label>
+                                        <input type="text" name="company_name" id="company_name" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="credit_code" class="block text-sm font-medium text-gray-700">统一社会信用代码</label>
+                                        <input type="text" name="credit_code" id="credit_code" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="company_type" class="block text-sm font-medium text-gray-700">企业类型</label>
+                                        <select id="company_type" name="company_type" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option>有限责任公司</option>
+                                            <option>股份有限公司</option>
+                                            <option>个人独资企业</option>
+                                            <option>合伙企业</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="industry" class="block text-sm font-medium text-gray-700">所属行业</label>
+                                        <select id="industry" name="industry" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option>人工智能</option>
+                                            <option>新材料</option>
+                                            <option>生物医药</option>
+                                            <option>大数据</option>
+                                            <option>新能源</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="registered_capital" class="block text-sm font-medium text-gray-700">注册资本</label>
+                                        <div class="mt-1 relative rounded-md shadow-sm">
+                                            <input type="text" name="registered_capital" id="registered_capital" class="focus:ring-primary-500 focus:border-primary-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
+                                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                <span class="text-gray-500 sm:text-sm">万元</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="company_size" class="block text-sm font-medium text-gray-700">企业规模</label>
+                                        <select id="company_size" name="company_size" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option>10人以下</option>
+                                            <option>10-50人</option>
+                                            <option>50-100人</option>
+                                            <option>100-500人</option>
+                                            <option>500人以上</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-span-6">
+                                        <label for="company_address" class="block text-sm font-medium text-gray-700">企业地址</label>
+                                        <input type="text" name="company_address" id="company_address" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 联系人信息 -->
+                            <div class="px-4 py-5 bg-gray-50 sm:p-6">
+                                <h4 class="text-lg font-medium text-gray-900 mb-4">联系人信息</h4>
+                                <div class="grid grid-cols-6 gap-6">
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="contact_name" class="block text-sm font-medium text-gray-700">联系人姓名</label>
+                                        <input type="text" name="contact_name" id="contact_name" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="contact_phone" class="block text-sm font-medium text-gray-700">联系电话</label>
+                                        <input type="text" name="contact_phone" id="contact_phone" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="contact_email" class="block text-sm font-medium text-gray-700">电子邮箱</label>
+                                        <input type="email" name="contact_email" id="contact_email" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="contact_position" class="block text-sm font-medium text-gray-700">职位</label>
+                                        <input type="text" name="contact_position" id="contact_position" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 其他信息 -->
+                            <div class="px-4 py-5 bg-white sm:p-6">
+                                <h4 class="text-lg font-medium text-gray-900 mb-4">其他信息</h4>
+                                <div class="grid grid-cols-6 gap-6">
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="source" class="block text-sm font-medium text-gray-700">客户来源</label>
+                                        <select id="source" name="source" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option>自主开发</option>
+                                            <option>渠道推荐</option>
+                                            <option>平台注册</option>
+                                            <option>转介绍</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-span-6">
+                                        <label for="remark" class="block text-sm font-medium text-gray-700">备注</label>
+                                        <textarea id="remark" name="remark" rows="3" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 按钮组 -->
+                            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                <button type="button" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 mr-3">
+                                    取消
+                                </button>
+                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    保存
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

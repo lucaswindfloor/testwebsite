@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>招商管理模块产品设计文档 - 湘江科创基地</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6 md:p-10">
+        <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            <!-- Header -->
+            <div class="bg-blue-700 text-white px-6 py-4">
+                <h1 class="text-2xl font-bold">湘江科创基地智慧园区系统</h1>
+                <p class="text-lg">招商管理模块产品设计文档</p>
+            </div>
+            
+            <!-- Document Content -->
+            <div class="p-6">
+                <!-- TOC -->
+                <div class="mb-8 p-4 bg-gray-50 rounded-lg">
+                    <h2 class="text-lg font-bold text-gray-700 mb-2">目录</h2>
+                    <ul class="space-y-1">
+                        <li><a href="#intro" class="text-blue-600 hover:text-blue-800">1. 产品概述</a></li>
+                        <li><a href="#users" class="text-blue-600 hover:text-blue-800">2. 用户角色与场景</a></li>
+                        <li><a href="#architecture" class="text-blue-600 hover:text-blue-800">3. 系统架构</a></li>
+                        <li><a href="#features" class="text-blue-600 hover:text-blue-800">4. 功能需求</a>
+                            <ul class="ml-4 space-y-1 mt-1">
+                                <li><a href="#client-management" class="text-blue-600 hover:text-blue-800">4.1 客户管理</a></li>
+                                <li><a href="#channel-management" class="text-blue-600 hover:text-blue-800">4.2 渠道管理</a></li>
+                                <li><a href="#contract-signing" class="text-blue-600 hover:text-blue-800">4.3 合同签约</a></li>
+                                <li><a href="#enterprise-entry" class="text-blue-600 hover:text-blue-800">4.4 企业入驻</a></li>
+                                <li><a href="#dict-settings" class="text-blue-600 hover:text-blue-800">4.5 招商字典设置</a></li>
+                                <li><a href="#property-management" class="text-blue-600 hover:text-blue-800">4.6 房源管理</a></li>
+                                <li><a href="#basic-settings" class="text-blue-600 hover:text-blue-800">4.7 基础设置</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#ui" class="text-blue-600 hover:text-blue-800">5. 界面设计</a></li>
+                        <li><a href="#data" class="text-blue-600 hover:text-blue-800">6. 数据结构</a></li>
+                        <li><a href="#flow" class="text-blue-600 hover:text-blue-800">7. 交互流程</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 1. Introduction -->
+                <section id="intro" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">1. 产品概述</h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-700">招商管理模块是湘江科创基地智慧园区系统的核心组成部分，围绕园区招商全流程进行精细化管理，包括客户开发、房源配置、合同签约及企业入驻等环节。本系统致力于提升园区招商效率，优化客户服务体验，实现园区资源的高效配置与管理。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-700 mb-2">产品定位</h3>
+                                <p class="text-sm text-gray-600">面向科创基地招商运营团队的专业招商管理工具，支持从客户意向收集到企业正式入驻的全流程管理，打造数字化招商运营平台。</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-700 mb-2">核心价值</h3>
+                                <p class="text-sm text-gray-600">提高招商效率，优化客户体验，实现园区资源高效配置，为园区运营决策提供数据支撑，降低管理成本。</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-700 mb-2">业务目标</h3>
+                                <p class="text-sm text-gray-600">提升园区招商引资效率15%以上，降低空置率，加快企业入驻速度，提高园区管理效率与客户满意度。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 2. User Roles and Scenarios -->
+                <section id="users" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">2. 用户角色与场景</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">用户角色</h3>
+                            <div class="overflow-hidden rounded-lg border border-gray-200">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">角色</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">权限范围</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">主要需求</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">公司领导</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">全部园区数据查看权限</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="text-sm text-gray-700">查看各园区招商情况、统计分析、决策支持</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">园区招商领导</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">所属园区全部数据查看及管理权限</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="text-sm text-gray-700">管理园区招商团队、查看招商进度、审核合同</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">招商人员</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">负责客户的管理与跟进权限</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="text-sm text-gray-700">登记客户意向、跟进客户、办理入驻手续</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">物业人员</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">企业入驻办理权限</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="text-sm text-gray-700">办理企业实际入驻流程、物资核对</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">运营人员</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">企业入驻审核权限</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="text-sm text-gray-700">审核企业入驻资格、核对缴费情况</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">渠道经纪人</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">渠道客户意向提交权限</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="text-sm text-gray-700">提交客户意向、查看意向进展</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">用户场景</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">场景一：客户意向收集与分配</h4>
+                                    <p class="text-sm text-gray-600">客户通过园区服务平台提交租赁意向，系统自动推送给招商主管进行审核与分配，招商专员根据分配任务进行客户跟进。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">场景二：客户跟进与合同签订</h4>
+                                    <p class="text-sm text-gray-600">招商专员跟进客户意向，进行多轮沟通洽谈，达成合作后录入客户资料，发起租赁合同签订流程。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">场景三：房源管理与定价</h4>
+                                    <p class="text-sm text-gray-600">园区招商负责人根据市场情况调整不同位置、不同类型房源的租金价格，并对空置房源进行重点推广。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">场景四：合同审核与企业入驻</h4>
+                                    <p class="text-sm text-gray-600">合同提交后，系统按照预设流程进行多级审核，审核通过后自动生成账单，企业缴费后办理入驻手续。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">场景五：渠道合作与管理</h4>
+                                    <p class="text-sm text-gray-600">招商团队与外部中介机构合作，管理合作渠道与经纪人信息，跟踪渠道带来的客户意向与转化情况。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">场景六：招商数据分析</h4>
+                                    <p class="text-sm text-gray-600">公司管理层查看各园区招商数据，分析客户来源、转化率、空置率等关键指标，制定招商策略调整。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 3. System Architecture -->
+                <section id="architecture" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">3. 系统架构</h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-700">招商管理模块作为湘江科创基地智慧园区系统的核心组成部分，与其他模块紧密协作，支持园区招商运营全流程管理。</p>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-semibold text-gray-800 mb-2">模块架构图</h3>
+                            <div class="p-4 bg-white rounded-lg border border-gray-200">
+                                <div class="text-center text-sm text-gray-500 mb-4">招商管理系统模块架构</div>
+                                <div class="border-2 border-blue-600 p-4 rounded-lg bg-blue-50 text-center font-bold text-blue-700 mb-4">招商管理系统</div>
+                                <div class="grid grid-cols-3 gap-4 mb-4">
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">客户管理</div>
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">渠道管理</div>
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">合同签约</div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4 mb-4">
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">企业入驻</div>
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">招商字典设置</div>
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">房源管理</div>
+                                    <div class="border-2 border-blue-500 p-3 rounded-lg bg-blue-50 text-center">基础设置</div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4">
+                                    <div class="border-2 border-gray-300 p-3 rounded-lg bg-gray-50 text-center text-gray-600">系统管理</div>
+                                    <div class="border-2 border-gray-300 p-3 rounded-lg bg-gray-50 text-center text-gray-600">运营管理</div>
+                                    <div class="border-2 border-gray-300 p-3 rounded-lg bg-gray-50 text-center text-gray-600">财务管理</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-hidden rounded-lg border border-gray-200">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">主要模块</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">子模块</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">主要功能</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap" rowspan="3">
+                                            <div class="text-sm font-medium text-gray-900">客户管理</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">意向登记</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">客户意向收集、审核、分配</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">客户档案</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">企业基本信息管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">客户跟进</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">客户跟进记录、授权、移交</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap" rowspan="2">
+                                            <div class="text-sm font-medium text-gray-900">渠道管理</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">渠道单位</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">渠道合作机构管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">经纪人管理</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">渠道经纪人信息管理</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap" rowspan="4">
+                                            <div class="text-sm font-medium text-gray-900">合同签约</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">租赁合同</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">房屋租赁合同管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">物业合同</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">物业服务合同管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">入孵协议</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">创业企业入孵协议管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">注册合同</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">企业注册地址使用合同管理</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm font-medium text-gray-900">企业入驻</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">企业入驻</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">入驻申请、审核、办理</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap" rowspan="5">
+                                            <div class="text-sm font-medium text-gray-900">招商字典设置</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">渠道类型</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">渠道类型管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">企业类型</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">企业类型管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">行业类型</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">行业类型管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">意向删除原因</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">意向删除原因管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">客户来源</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">客户来源渠道管理</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap" rowspan="6">
+                                            <div class="text-sm font-medium text-gray-900">房源管理</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">片区管理</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">园区片区信息管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">楼栋管理</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">楼栋信息管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">楼层管理</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">楼层信息管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">房间管理</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">房间信息管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">工位管理</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">工位信息管理</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">租金定价</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">房源租金定价设置</div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm font-medium text-gray-900">基础设置</div>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="text-sm text-gray-700">招商设置</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="text-sm text-gray-700">意向自动收回设置</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 4. Features -->
+                <section id="features" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">4. 功能需求</h2>
+                    
+                    <!-- 4.1 Client Management -->
+                    <section id="client-management" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.1 客户管理</h3>
+                        
+                        <!-- 4.1.1 Intention Registration -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">1</span>
+                                意向登记
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">意向登记模块用于记录客户的租赁意向信息，支持意向收集、审核、分配等全流程管理。</p>
+                                        <p class="text-sm text-gray-700">系统支持多渠道意向收集，包括招商人员直接录入、园区服务平台和小程序收集的意向自动推送。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可新增、修改自己的客户意向</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商主管可查看、分配所有意向</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>公司领导可查看所有园区的意向数据</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">意向登记与管理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持新增、删除、查询、修改客户意向</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持Excel批量导入、导出意向信息</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>新增意向时，选择客户与选择意向房源</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持选择具体的某栋、某楼层的房间和工位</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>登记意向时默认登记人为跟进人</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">意向审核与分配</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>园区服务平台、小程序中的意向推送至此审核</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持在流程中配置审核节点和指定审核人</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>系统自动将待审任务发送给相应的审核人</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>审核通过的意向可分配给招商人员跟进</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持删除错误或跟进失败的意向，归为已流失意向</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>被删除的客户意向将保存在"已流失意向"列表中，便于后续分析流失原因</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>一个意向可以选择多个房源，但必须属于同一园区</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>审核流程可根据园区实际情况进行配置，支持多级审核</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 4.1.2 Customer Profile -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">2</span>
+                                客户档案
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">客户档案模块用于管理潜在客户及已入驻企业的核心信息，构建完整的企业信息库，支持招商和运营决策。</p>
+                                        <p class="text-sm text-gray-700">系统支持根据不同的用户角色设置相应的权限控制，确保数据安全的同时提升查询和管理效率。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>公司领导可查看所有园区的客户档案</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>园区招商领导可查看所在园区的客户档案</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可查看自己的客户档案</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">企业档案管理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持企业档案的新增、删除、查询、修改</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持Excel批量导入、导出企业档案信息</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>多条件组合查询（企业名称、行业、规模等）</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>集成第三方企业信息查询接口</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">企业信息管理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>企业基本信息（名称、行业类型、企业类型等）</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>企业证照信息（统一社会信用代码、营业执照）</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>联系人信息（法人、联系人、电话等）</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>企业经营信息（成立日期、注册资本、实缴资本、规模）</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>企业简介与地址信息</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>企业档案一旦创建，将自动同步到园区其他相关系统中</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>已签约的企业档案不允许删除，只能进行归档处理</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>企业信息更新将自动记录变更历史，便于后续跟踪</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 4.1.3 Customer Follow-up -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">3</span>
+                                客户跟进
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">客户跟进模块用于记录和管理与客户的沟通过程，支持跟进记录、提醒、权限管理和合同发起等功能，提高招商转化率。</p>
+                                        <p class="text-sm text-gray-700">系统自动提醒跟进任务，帮助招商人员及时跟进客户，避免客户流失。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可跟进自己负责的客户</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商主管可查看所有跟进记录</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可将客户授权或移交给其他人员</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">跟进管理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>添加客户跟进记录，记录沟通内容与结果</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>查看客户完整跟进历史记录</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>设置下次跟进提醒时间</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>直接发起合同签约流程</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>跟进消息推送，每周五上午9点自动发送</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">客户权限管理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>客户授权：允许其他人临时查看和跟进</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>客户移交：将客户永久转给其他人员负责</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>查看分配、授权、移交、收回操作记录</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>设置授权期限，过期自动收回</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>客户跟进周期超过30天无记录，系统自动提醒跟进人及其主管</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>客户授权默认有效期为7天，期满自动收回</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>客户移交需经过主管审批，确认后不可撤销</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- 4.2 Channel Management -->
+                    <section id="channel-management" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.2 渠道管理</h3>
+                        
+                        <!-- 4.2.1 Channel Units -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">1</span>
+                                渠道单位
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">渠道单位模块用于管理合作的外部招商渠道，包括房产中介、行业协会、商会等，支持渠道信息管理和经纪人统计。</p>
+                                        <p class="text-sm text-gray-700">系统支持根据不同的用户角色设置相应的查看权限，确保数据安全与协作效率。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>公司领导可查看所有园区的渠道单位</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>园区招商领导可查看所在园区的渠道单位</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可查看自己所有的渠道单位</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持渠道单位的新增、删除、查询、修改功能</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持Excel批量导入、导出渠道单位信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>查看各渠道单位下的经纪人数量统计</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>查看渠道单位带来的客户意向数量和转化率</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>渠道单位评级管理，基于合作历史和业绩进行评级</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 4.2.2 Broker Management -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">2</span>
+                                经纪人管理
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">经纪人管理模块用于维护合作渠道的经纪人信息，跟踪经纪人业绩，支持经纪人信息管理和业绩查询。</p>
+                                        <p class="text-sm text-gray-700">系统支持将经纪人与渠道单位关联，便于渠道业绩统计和管理。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商主管可管理所有经纪人信息</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可查看和管理自己对接的经纪人</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持经纪人的新增、删除、查询、修改功能</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持Excel批量导入、导出经纪人信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>新增经纪人时关联所属的渠道单位</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>查看经纪人带来的客户意向数量和签约情况</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>经纪人业绩统计和激励管理</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>一个经纪人必须关联到一个渠道单位</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>经纪人可以转换所属渠道单位，但历史业绩归属不变</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>经纪人业绩按月统计，支持查看历史业绩记录</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- 4.3 Contract Signing -->
+                    <section id="contract-signing" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.3 合同签约</h3>
+                        
+                        <!-- 4.3.1 Lease Contract -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">1</span>
+                                租赁合同
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">租赁合同模块用于管理园区与企业之间的房屋租赁合同，支持合同创建、审核、修改、导出等全流程管理，实现合同电子化。</p>
+                                        <p class="text-sm text-gray-700">系统支持复杂的租金计算规则，包括装修减免、租金递增等，自动生成账单和推送通知。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可创建和修改租赁合同</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>园区招商领导可审核租赁合同</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>公司领导可查看所有园区租赁合同</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">合同管理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持合同的新增、删除、查询、修改功能</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持PDF格式的纸质合同导入系统存档</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>选择引用方式关联客户信息和房源信息</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>租赁合同必填营业执照、法人及身份证复印件</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>合同审核功能，支持多级审核流程</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持根据合同模板生成电子版租赁合同并导出</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">费用设置</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持装修时间设置、装修减免设置</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>费项支付方式设置：年度、季度、月度</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>租金递增设置，支持设置递增比例和递增时间</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持租金价格上下调整功能</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>履约保证金设置，支持按月数或固定金额</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>支持设置账单生成日规则</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>可预览根据合同将生成的费用明细</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>合同审核通过后，系统自动生成首笔账单</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>合同审核通过后，系统将合同信息建档</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>合同审核通过后，系统自动生成企业账号并发送短信通知</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>装修优惠在单价折扣后计算</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>租赁合同和物业合同可以一起签订</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 4.3.2 Property Contract -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">2</span>
+                                物业合同
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">物业合同模块用于管理园区与企业之间的物业服务合同，支持合同创建、审核、修改、导出等全流程管理，实现合同电子化。</p>
+                                        <p class="text-sm text-gray-700">物业合同与租赁合同或销售合同关联，自动带入企业和房源信息，简化录入流程。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可创建和修改物业合同</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>园区管理人员可审核物业合同</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持合同的新增、删除、查询、修改、审核、导出功能</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>与销售合同或租赁合同关联，自动带入前置合同企业和房源信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持设置物业费和空调能耗费</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持按月度、季度方式支付物业费和空调能耗费</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持装修期减免设置、费项递增设置、费项上下调整</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>合同审核通过后，系统将合同信息推送到企业档案中归档</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>水电费标准不在物业合同中设置，由水电能源表处统一设置</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>合同审核通过后，企业用户登录可查看应付账单</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 4.3.3 Incubation Agreement -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">3</span>
+                                入孵协议
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">入孵协议模块用于管理创业企业入驻孵化器的协议，支持协议创建、审核、修改、导出等全流程管理。</p>
+                                        <p class="text-sm text-gray-700">适用于创业企业使用工位或小型办公空间，简化合同流程，降低入驻门槛。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可创建和修改入孵协议</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>孵化器管理人员可审核入孵协议</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持协议的新增、删除、查询、修改、审核、导出功能</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>选择引用方式关联企业信息、工位/工位套间信息、费项信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持设置工位服务费或套间一口价</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持设置履约保证金</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持装修时间设置，工位服务费支持季度支付方式</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持装修减免设置、工位服务费递增设置、工位服务费上下调整</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>入孵协议不需要必填营业执照、法人及法人身份证复印件</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>协议审核通过后，系统将信息推送到企业档案中归档</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>系统自动生成企业账号，若企业已存在账号，则不再重复生成</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 4.3.4 Registration Contract -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">4</span>
+                                注册合同
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">注册合同模块用于管理企业使用园区地址作为工商注册地址的合同，满足企业注册需求。</p>
+                                        <p class="text-sm text-gray-700">支持设置注册服务费，也可设置为0表示不收取服务费。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可创建和修改注册合同</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>园区管理人员可审核注册合同</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持合同的新增、删除、查询、修改、审核、导出功能</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>选择引用方式关联企业信息、房源信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持设置注册服务费，可设置为0</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持设置注册地址使用期限</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>合同到期前自动提醒续期</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>企业必须有租赁合同或入孵协议才能签订注册合同</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>注册地址服务不影响企业的实际办公地址</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- 4.4 Enterprise Entry -->
+                    <section id="enterprise-entry" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.4 企业入驻</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <span class="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-center text-xs mr-2">1</span>
+                                企业入驻
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">功能描述</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-700 mb-3">企业入驻模块用于管理企业从合同签订到实际入驻的全流程，包括缴费检查、申请、审核和入驻办理等环节。</p>
+                                        <p class="text-sm text-gray-700">系统支持自动发起入驻流程，或由招商人员手动发起，提高入驻效率。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h5 class="font-medium text-blue-700">用户权限</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>招商人员可发起企业入驻申请</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>运营人员可审核企业入驻申请</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-green-500 mr-2"><i class="fas fa-check-circle"></i></span>
+                                                <span>物业人员可办理企业入驻</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden mt-4 ml-8">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h5 class="font-medium text-blue-700">具体功能点</h5>
+                                </div>
+                                <div class="p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">入驻申请与审核</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>合同审核通过后自动检查缴费情况</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>已缴费的自动发起企业入驻流程</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>未缴费的由招商人员或企业申请入驻</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>运营审核入驻申请，可查看首期款缴纳情况</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h6 class="font-medium text-gray-800 mb-2">入驻办理</h6>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>审核通过后转送给物业人员办理入驻</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>物业核对企业所租房源配套物资情况</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>物业核对门禁权限和企业水电表</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                    <span>办理入驻手续，确认入驻完成</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>系统自动检查首笔账单缴费情况、电费预充值情况、租赁合同履约保证金</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>企业入驻申请需要在租赁合同生效后才能发起</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>入驻办理完成后，系统自动更新房源状态为已入驻</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- 4.5 Dictionary Settings -->
+                    <section id="dict-settings" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.5 招商字典设置</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                            <!-- 4.5.1 Channel Type -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">渠道类型</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">渠道类型字典用于维护渠道单位的分类信息，如房产中介、行业协会、商会等。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改渠道类型</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持渠道类型启用/禁用状态管理</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.5.2 Enterprise Type -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">企业类型</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">企业类型字典用于维护企业的分类信息，如有限责任公司、个体工商户、合伙企业等。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改企业类型</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持企业类型启用/禁用状态管理</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.5.3 Industry Type -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">行业类型</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">行业类型字典用于维护企业所属行业的分类信息，如人工智能、新材料、生物医药等。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改行业类型</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持行业类型的多级分类管理</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.5.4 Intention Deletion Reason -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">意向删除原因</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">意向删除原因字典用于规范客户意向删除时的原因选择，便于后续进行意向流失分析。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改意向删除原因</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>提供常见的意向删除原因供选择</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.5.5 Customer Source -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">客户来源</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">客户来源字典用于维护客户的获取渠道信息，如自主开发、网络推广、活动引流等。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改客户来源</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持客户来源的启用/禁用状态管理</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- 4.6 Property Management -->
+                    <section id="property-management" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.6 房源管理</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
+                            <!-- 4.6.1 Area Management -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">片区管理</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">片区管理模块用于维护园区内不同片区的基本信息，支持多片区管理和数据统计。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改片区信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>记录片区占地面积、建筑面积、容积率等信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>设置片区功能定位，上传片区效果图</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持批量配置片区信息</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.6.2 Building Management -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">楼栋管理</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">楼栋管理模块用于维护园区内各楼栋的基本信息，支持楼栋的添加、修改、查询等功能。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改楼栋信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>记录楼栋建筑面积、套内面积、公摊率等信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>设置楼栋用途定位，上传楼栋效果图</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>有下级楼层或房间时不能删除</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持批量配置楼栋信息</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.6.3 Floor Management -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">楼层管理</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">楼层管理模块用于维护楼栋内各楼层的基本信息，支持楼层的添加、修改、查询等功能。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改楼层信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>记录楼层建筑面积、套内面积、公摊率等信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>设置楼层用途定位，上传楼层平面图</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持批量配置楼层信息</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.6.4 Room Management -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">房间管理</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">房间管理模块用于维护楼层内各房间的基本信息，支持房间的添加、修改、查询等功能。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改房间信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>记录房间租赁单价、建筑面积、套内面积、公摊率等</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>设置房间用途，上传房间平面图</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持批量配置房间信息</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.6.5 Workstation Management -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">工位管理</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">工位管理模块用于维护创业空间内工位的基本信息，支持工位的添加、修改、查询等功能。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持新增、删除、查询、修改工位信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>记录工位大小、工位服务费等信息</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>上传工位平面图</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持批量配置工位信息</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 4.6.6 Rental Pricing -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">租金定价</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">租金定价模块用于设置不同类型房源的租金标准，支持多维度条件的定价策略配置。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>根据楼栋、楼层进行租金定价设置</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>根据用途（办公室、商铺、孵化器等）定价</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>根据是否有露台等特殊条件定价</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>支持定期调整租金价格策略</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4 ml-8">
+                            <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                    <span>房源信息采用层级结构：片区 > 楼栋 > 楼层 > 房间/工位</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                    <span>有下级数据的房源不允许删除，需先删除下级数据</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                    <span>已签约的房源信息不允许删除，只能进行状态变更</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                    <span>房源定价变更不影响已签订合同的价格</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <!-- 4.7 Basic Settings -->
+                    <section id="basic-settings" class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">4.7 基础设置</h3>
+                        
+                        <div class="ml-8">
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-blue-50 px-4 py-2">
+                                    <h4 class="font-medium text-blue-700">招商设置</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-sm text-gray-700 mb-3">招商设置模块用于配置招商管理的基础规则，如意向自动收回规则等，提高招商效率。</p>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>意向自动收回设置，配置长时间未跟进的意向自动收回规则</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>设置未跟进提醒时间和提醒方式</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                            <span>设置客户跟进周期和客户流失预警规则</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
+                                <h6 class="font-medium text-yellow-700 mb-2">业务规则</h6>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>意向自动收回后会发送通知给原跟进人</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                                        <span>基础设置的修改需要管理员权限</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                
+                <!-- 5. UI Design -->
+                <section id="ui" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">5. 界面设计</h2>
+                    <div class="space-y-6">
+                        <p class="text-gray-700">招商管理系统界面设计遵循简洁、高效、易用的原则，采用现代化的UI设计风格，确保用户可以快速上手使用。</p>
+                        
+                        <!-- 5.1 Design Style -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">5.1 设计风格</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">色彩系统</h4>
+                                    <p class="text-sm text-gray-600">以蓝色为主色调，搭配中性色，体现专业、稳重的企业形象。不同功能模块可使用不同的辅助色进行区分，提高视觉识别度。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">布局结构</h4>
+                                    <p class="text-sm text-gray-600">采用左侧导航+顶部标题+内容区的经典布局，确保信息层级清晰。列表页和详情页结构统一，提高用户熟悉度。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">交互元素</h4>
+                                    <p class="text-sm text-gray-600">按钮、表单、表格等交互元素风格统一，确保系统整体视觉一致性。重要操作按钮使用主色调，次要操作降低视觉权重。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 5.2 Core Pages -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">5.2 核心页面</h3>
+                            <div class="space-y-4">
+                                <!-- Client Intention List -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h4 class="font-medium text-blue-700">客户意向列表</h4>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="text-sm text-gray-700 mb-3">客户意向列表页面展示所有待处理、跟进中、已签约和已流失的客户意向，支持多维度筛选和搜索。</p>
+                                                <ul class="space-y-2 text-sm text-gray-700">
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>顶部搜索栏支持按客户名称、联系人等关键字搜索</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>左侧筛选区支持按意向状态、跟进人、时间等筛选</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>表格展示意向核心信息，包括客户、意向房源、登记时间等</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>操作区支持跟进、查看详情、分配、审核等快捷操作</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-gray-100 p-3 rounded-lg flex items-center justify-center">
+                                                <div class="text-center text-gray-500">
+                                                    <i class="fas fa-image text-4xl mb-2"></i>
+                                                    <p class="text-sm">客户意向列表页面示意图</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Contract Creation -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h4 class="font-medium text-blue-700">合同创建</h4>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="text-sm text-gray-700 mb-3">合同创建页面采用步骤式表单，引导用户完成企业信息、房源信息、合同条款、费用设置等信息的填写。</p>
+                                                <ul class="space-y-2 text-sm text-gray-700">
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>顶部步骤导航，清晰展示当前处于哪个步骤</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>表单区域根据不同步骤展示不同的表单内容</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>支持表单验证，确保必填信息完整填写</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>预览区可实时查看合同生成效果和费用明细</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-gray-100 p-3 rounded-lg flex items-center justify-center">
+                                                <div class="text-center text-gray-500">
+                                                    <i class="fas fa-image text-4xl mb-2"></i>
+                                                    <p class="text-sm">合同创建页面示意图</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Property Management -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h4 class="font-medium text-blue-700">房源管理</h4>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="text-sm text-gray-700 mb-3">房源管理页面采用树形结构+详情展示的方式，直观展示园区房源层级关系，便于房源查找和管理。</p>
+                                                <ul class="space-y-2 text-sm text-gray-700">
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>左侧树形导航，展示片区-楼栋-楼层-房间的层级结构</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>右侧详情区，展示选中房源的详细信息</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>支持房源状态展示，如空置、已租、装修中等</span>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                                        <span>操作区支持新增、编辑、删除等快捷操作</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-gray-100 p-3 rounded-lg flex items-center justify-center">
+                                                <div class="text-center text-gray-500">
+                                                    <i class="fas fa-image text-4xl mb-2"></i>
+                                                    <p class="text-sm">房源管理页面示意图</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 5.3 Responsive Design -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">5.3 响应式设计</h3>
+                            <p class="text-sm text-gray-700 mb-3">系统支持多终端访问，采用响应式设计，确保在不同设备上都有良好的使用体验。</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">PC端</h4>
+                                    <p class="text-sm text-gray-600">完整功能支持，适合日常办公使用，支持大屏展示和复杂操作。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">平板端</h4>
+                                    <p class="text-sm text-gray-600">支持核心功能操作，适合移动办公场景，简化部分复杂操作流程。</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">移动端</h4>
+                                    <p class="text-sm text-gray-600">支持查询和简单操作，适合外出考察等场景，保留最核心的功能。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 6. Data Structure -->
+                <section id="data" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">6. 数据结构</h2>
+                    <div class="space-y-6">
+                        <p class="text-gray-700">招商管理系统涉及客户、房源、合同等多个核心数据实体，以下是主要数据结构设计。</p>
+                        
+                        <!-- 6.1 Core Entities -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">6.1 核心实体</h3>
+                            <div class="space-y-4">
+                                <div class="overflow-hidden rounded-lg border border-gray-200">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">实体</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">主要字段</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">关联实体</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">企业</div>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <div class="text-sm text-gray-700">企业ID、企业名称、统一社会信用代码、企业类型、行业类型、成立日期、注册资本、企业规模、法人信息、联系人信息、企业简介、地址</div>
+                                                </td>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-700">意向、合同</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">意向</div>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <div class="text-sm text-gray-700">意向ID、企业ID、意向房源、登记时间、跟进人、意向状态、意向来源、审核状态、删除原因</div>
+                                                </td>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-700">企业、房源、跟进记录</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">房源</div>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <div class="text-sm text-gray-700">房源ID、房源类型、房源名称、所属楼层、建筑面积、套内面积、公摊率、用途、状态、租金单价、平面图</div>
+                                                </td>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-700">楼层、意向、合同</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">合同</div>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <div class="text-sm text-gray-700">合同ID、合同类型、企业ID、房源ID、签约日期、生效日期、到期日期、租金、支付方式、合同状态、审核状态</div>
+                                                </td>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-700">企业、房源、账单</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">渠道</div>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <div class="text-sm text-gray-700">渠道ID、渠道名称、渠道类型、联系人、联系方式、合作状态、评级</div>
+                                                </td>
+                                                <td class="px-4 py-3 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-700">经纪人、意向</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 6.2 Relationship Model -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">6.2 关系模型</h3>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-800 mb-2">实体关系</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                        <span>企业 1:N 意向：一个企业可以有多个意向</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                        <span>企业 1:N 合同：一个企业可以签订多个合同</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                        <span>房源 1:N 意向：一个房源可以被多个客户意向</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                        <span>房源 1:1 合同：一个房源同一时间只能被一个有效合同租用</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                        <span>渠道 1:N 经纪人：一个渠道可以有多个经纪人</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2"><i class="fas fa-circle"></i></span>
+                                        <span>合同 1:N 账单：一个合同可以生成多个账单</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 7. Interaction Flow -->
+                <section id="flow" class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">7. 交互流程</h2>
+                    <div class="space-y-6">
+                        <p class="text-gray-700">招商管理系统的核心业务流程包括客户意向管理、合同签约、企业入驻等环节，以下是主要交互流程。</p>
+                        
+                        <!-- 7.1 Core Flows -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">7.1 核心流程</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- Client Intention Process -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h4 class="font-medium text-blue-700">客户意向流程</h4>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                            <div class="grid grid-cols-5 gap-2">
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">意向登记</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-right text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">意向审核</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-right text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">跟进人分配</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center my-2">
+                                                <i class="fas fa-arrow-down text-gray-400"></i>
+                                            </div>
+                                            <div class="grid grid-cols-5 gap-2">
+                                                <div class="border-2 border-green-500 p-2 rounded-lg bg-green-50 text-center">
+                                                    <div class="text-xs font-medium text-green-800">合同签订</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-left text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">客户洽谈</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-left text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">客户跟进</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-3">客户意向从登记到成功签约的完整流程，包括多个环节的权限控制和状态流转。</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Contract Signing Process -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-blue-50 px-4 py-2">
+                                        <h4 class="font-medium text-blue-700">合同签约流程</h4>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                            <div class="grid grid-cols-7 gap-2">
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">创建合同</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-right text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">提交审核</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-right text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">审核通过</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-right text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">生成账单</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center my-2">
+                                                <i class="fas fa-arrow-down text-gray-400"></i>
+                                            </div>
+                                            <div class="grid grid-cols-7 gap-2">
+                                                <div class="border-2 border-green-500 p-2 rounded-lg bg-green-50 text-center">
+                                                    <div class="text-xs font-medium text-green-800">企业入驻</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-left text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">入驻审核</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-left text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">入驻申请</div>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <i class="fas fa-arrow-left text-gray-400"></i>
+                                                </div>
+                                                <div class="border-2 border-blue-500 p-2 rounded-lg bg-blue-50 text-center">
+                                                    <div class="text-xs font-medium text-blue-800">缴费确认</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-3">合同从创建到企业最终入驻的完整流程，包括审核、缴费、申请入驻等环节。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 7.2 User Permission -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">7.2 用户权限</h3>
+                            <div class="overflow-hidden rounded-lg border border-gray-200">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">功能模块</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">公司领导</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">园区招商领导</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">招商人员</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">客户管理</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">所有园区查看权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">所属园区的管理权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">负责客户的管理权限</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">合同签约</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">所有园区查看权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">审核权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">创建和修改权限</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">房源管理</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">所有园区查看权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">所属园区的管理权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">查看权限</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">字典设置</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">管理权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">查看权限</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-700">查看权限</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

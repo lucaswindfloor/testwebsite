@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客户管理 - 湘江科创基地智慧园区系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-primary-700 border-r">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <img class="h-10 w-auto" src="https://source.unsplash.com/S_pXw_kIxFM/32x32" alt="湘江科创基地">
+                        <span class="ml-2 text-white font-semibold text-lg">湘江科创基地</span>
+                    </div>
+                    <div class="mt-6 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-chart-bar mr-3 text-primary-300"></i>
+                                总览
+                            </a>
+                            <a href="#" class="bg-primary-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-user mr-3 text-primary-300"></i>
+                                客户管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-handshake mr-3 text-primary-300"></i>
+                                渠道管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-file-alt mr-3 text-primary-300"></i>
+                                合同签约
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-building mr-3 text-primary-300"></i>
+                                企业入驻
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-home mr-3 text-primary-300"></i>
+                                房源管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-book mr-3 text-primary-300"></i>
+                                招商字典设置
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-cog mr-3 text-primary-300"></i>
+                                基础设置
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex border-t border-primary-800 p-4">
+                        <a href="#" class="flex-shrink-0 group block">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="h-9 w-9 rounded-full" src="https://source.unsplash.com/mEZ3PoFGs_k/128x128" alt="头像">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-white">张经理</p>
+                                    <p class="text-xs font-medium text-primary-200">招商主管</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Top navbar -->
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+                <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-between">
+                    <div class="flex-1 flex items-center">
+                        <div class="text-xl font-semibold text-gray-800">客户管理</div>
+                    </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-bell"></i>
+                        </button>
+                        <button class="ml-3 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-question-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <div class="md:flex md:items-center md:justify-between mb-6">
+                            <div class="flex-1 min-w-0">
+                                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                    客户管理总览
+                                </h2>
+                            </div>
+                            <div class="mt-4 flex md:mt-0 md:ml-4">
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                                    导出数据
+                                </button>
+                                <button type="button" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none">
+                                    新增客户
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 数据概览 -->
+                        <div class="mt-2">
+                            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                                <!-- 客户总数 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg">
+                                    <div class="px-4 py-5 sm:p-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                                <i class="fas fa-building text-white"></i>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                                        客户总数
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="text-lg font-medium text-gray-900">
+                                                            187
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 px-4 py-2 sm:px-6">
+                                        <div class="text-sm">
+                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                                查看详情
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 今日新增意向 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg">
+                                    <div class="px-4 py-5 sm:p-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                                                <i class="fas fa-lightbulb text-white"></i>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                                        今日新增意向
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="text-lg font-medium text-gray-900">
+                                                            12
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 px-4 py-2 sm:px-6">
+                                        <div class="text-sm">
+                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                                查看详情
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 待审核意向 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg">
+                                    <div class="px-4 py-5 sm:p-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                                                <i class="fas fa-tasks text-white"></i>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                                        待审核意向
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="text-lg font-medium text-gray-900">
+                                                            8
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 px-4 py-2 sm:px-6">
+                                        <div class="text-sm">
+                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                                立即审核
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 今日待跟进 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg">
+                                    <div class="px-4 py-5 sm:p-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                                                <i class="fas fa-phone-alt text-white"></i>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                                        今日待跟进
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="text-lg font-medium text-gray-900">
+                                                            15
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 px-4 py-2 sm:px-6">
+                                        <div class="text-sm">
+                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+                                                查看详情
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 功能模块导航 -->
+                        <div class="mt-8">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                                功能模块
+                            </h3>
+                            <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+                                <!-- 意向登记 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow">
+                                    <a href="intention-list.html" class="block">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                                                    <i class="fas fa-lightbulb text-blue-600 text-xl"></i>
+                                                </div>
+                                                <div class="ml-5">
+                                                    <h4 class="text-lg font-medium text-gray-900">意向登记</h4>
+                                                    <p class="text-sm text-gray-500 mt-1">
+                                                        管理客户租赁意向，支持意向收集、审核、分配
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gray-50 px-4 py-3 sm:px-6 border-t border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-xs text-gray-500">共 53 个意向</span>
+                                                <span class="text-primary-600 text-sm">进入 <i class="fas fa-chevron-right text-xs ml-1"></i></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- 客户档案 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow">
+                                    <a href="customer-list.html" class="block">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 bg-green-100 rounded-md p-3">
+                                                    <i class="fas fa-building text-green-600 text-xl"></i>
+                                                </div>
+                                                <div class="ml-5">
+                                                    <h4 class="text-lg font-medium text-gray-900">客户档案</h4>
+                                                    <p class="text-sm text-gray-500 mt-1">
+                                                        管理企业核心信息，构建完整企业信息库
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gray-50 px-4 py-3 sm:px-6 border-t border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-xs text-gray-500">共 187 个客户</span>
+                                                <span class="text-primary-600 text-sm">进入 <i class="fas fa-chevron-right text-xs ml-1"></i></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- 客户跟进 -->
+                                <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow">
+                                    <a href="follow-up-list.html" class="block">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 bg-purple-100 rounded-md p-3">
+                                                    <i class="fas fa-phone-alt text-purple-600 text-xl"></i>
+                                                </div>
+                                                <div class="ml-5">
+                                                    <h4 class="text-lg font-medium text-gray-900">客户跟进</h4>
+                                                    <p class="text-sm text-gray-500 mt-1">
+                                                        管理与客户的沟通过程，提升招商转化率
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gray-50 px-4 py-3 sm:px-6 border-t border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-xs text-gray-500">今日 15 个待跟进</span>
+                                                <span class="text-primary-600 text-sm">进入 <i class="fas fa-chevron-right text-xs ml-1"></i></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 近期客户动态 -->
+                        <div class="mt-8">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 flex justify-between items-center">
+                                <span>近期客户动态</span>
+                                <a href="#" class="text-sm text-primary-600 hover:text-primary-500">查看全部</a>
+                            </h3>
+                            <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                                <ul class="divide-y divide-gray-200">
+                                    <li>
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center">
+                                                    <div class="bg-blue-100 rounded-full p-2">
+                                                        <i class="fas fa-lightbulb text-blue-600"></i>
+                                                    </div>
+                                                    <p class="ml-3 text-sm font-medium text-gray-900">
+                                                        长沙智能科技有限公司 <span class="text-gray-500">提交了租赁意向</span>
+                                                    </p>
+                                                </div>
+                                                <div class="ml-2 flex-shrink-0">
+                                                    <span class="text-xs text-gray-500">10分钟前</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 sm:flex sm:justify-between">
+                                                <div class="sm:flex">
+                                                    <p class="flex items-center text-sm text-gray-500">
+                                                        <i class="fas fa-map-marker-alt text-gray-400 mr-1.5"></i>
+                                                        湘江基地B区3栋
+                                                    </p>
+                                                    <p class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
+                                                        <i class="fas fa-user text-gray-400 mr-1.5"></i>
+                                                        李经理
+                                                    </p>
+                                                </div>
+                                                <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                                                    <button class="text-primary-600 hover:text-primary-900">
+                                                        查看详情
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center">
+                                                    <div class="bg-green-100 rounded-full p-2">
+                                                        <i class="fas fa-phone-alt text-green-600"></i>
+                                                    </div>
+                                                    <p class="ml-3 text-sm font-medium text-gray-900">
+                                                        湖南创新材料研究院 <span class="text-gray-500">已完成跟进</span>
+                                                    </p>
+                                                </div>
+                                                <div class="ml-2 flex-shrink-0">
+                                                    <span class="text-xs text-gray-500">1小时前</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 sm:flex sm:justify-between">
+                                                <div class="sm:flex">
+                                                    <p class="flex items-center text-sm text-gray-500">
+                                                        <i class="fas fa-map-marker-alt text-gray-400 mr-1.5"></i>
+                                                        湘江基地A区科研楼
+                                                    </p>
+                                                    <p class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
+                                                        <i class="fas fa-user text-gray-400 mr-1.5"></i>
+                                                        赵经理
+                                                    </p>
+                                                </div>
+                                                <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                                                    <button class="text-primary-600 hover:text-primary-900">
+                                                        查看详情
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center">
+                                                    <div class="bg-yellow-100 rounded-full p-2">
+                                                        <i class="fas fa-check-circle text-yellow-600"></i>
+                                                    </div>
+                                                    <p class="ml-3 text-sm font-medium text-gray-900">
+                                                        湖南数字科技有限公司 <span class="text-gray-500">意向已审核通过</span>
+                                                    </p>
+                                                </div>
+                                                <div class="ml-2 flex-shrink-0">
+                                                    <span class="text-xs text-gray-500">2小时前</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 sm:flex sm:justify-between">
+                                                <div class="sm:flex">
+                                                    <p class="flex items-center text-sm text-gray-500">
+                                                        <i class="fas fa-map-marker-alt text-gray-400 mr-1.5"></i>
+                                                        湘江基地C区1栋
+                                                    </p>
+                                                    <p class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
+                                                        <i class="fas fa-user text-gray-400 mr-1.5"></i>
+                                                        王主管
+                                                    </p>
+                                                </div>
+                                                <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                                                    <button class="text-primary-600 hover:text-primary-900">
+                                                        查看详情
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html> 
