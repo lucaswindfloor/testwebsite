@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湘江科创基地智慧园区系统 - 招商管理模块</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-primary-700 border-r">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <img class="h-10 w-auto" src="https://source.unsplash.com/S_pXw_kIxFM/32x32" alt="湘江科创基地">
+                        <span class="ml-2 text-white font-semibold text-lg">湘江科创基地</span>
+                    </div>
+                    <div class="mt-6 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="#" class="bg-primary-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-chart-bar mr-3 text-primary-300"></i>
+                                总览
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-user mr-3 text-primary-300"></i>
+                                客户管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-handshake mr-3 text-primary-300"></i>
+                                渠道管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="far fa-file-alt mr-3 text-primary-300"></i>
+                                合同签约
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-building mr-3 text-primary-300"></i>
+                                企业入驻
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-home mr-3 text-primary-300"></i>
+                                房源管理
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-book mr-3 text-primary-300"></i>
+                                招商字典设置
+                            </a>
+                            <a href="#" class="text-primary-100 hover:bg-primary-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-cog mr-3 text-primary-300"></i>
+                                基础设置
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex border-t border-primary-800 p-4">
+                        <a href="#" class="flex-shrink-0 group block">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="h-9 w-9 rounded-full" src="https://source.unsplash.com/mEZ3PoFGs_k/128x128" alt="头像">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-white">张经理</p>
+                                    <p class="text-xs font-medium text-primary-200">招商主管</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Top navbar -->
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+                <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-between">
+                    <div class="flex-1 flex items-center">
+                        <div class="text-xl font-semibold text-gray-800">招商管理系统</div>
+                    </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-bell"></i>
+                        </button>
+                        <button class="ml-3 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <i class="far fa-question-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 relative overflow-y-auto focus:outline-none p-6">
+                <!-- 页面内容将在这里替换 -->
+                <div class="pb-6">
+                    <h1 class="text-2xl font-semibold text-gray-900">系统总览</h1>
+                </div>
+                
+                <!-- Page Content Placeholder -->
+                <div class="py-12 flex justify-center items-center">
+                    <div class="text-center">
+                        <p class="text-lg text-gray-500">此处将替换为各页面的具体内容</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html> 
